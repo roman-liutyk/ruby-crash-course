@@ -7,6 +7,8 @@ class Student
   @@students = Set.new
 
   def initialize(name, surname, date_of_birth)
+    raise ArgumentError, "Date of birth is not valid" if date_of_birth >= Date.today
+
     @name = name
     @surname = surname
     @date_of_birth = date_of_birth
@@ -21,10 +23,8 @@ class Student
   end
 
   def add_student
-  	raise ArgumentError, "Date of birth is not valid" if self.date_of_birth >= Date.today
-
     @@students.add(self)
-	end
+  end
 
 	def self.remove_student(student)
     @@students.delete(student)
